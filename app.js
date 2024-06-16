@@ -5,8 +5,9 @@ let particleColors = [["#46eb34", "#85d166", "grey"], ["#13ede6", "red", "#3c9e9
 var deathParticles = []
 let subDeathParticles = []
 let nonExplodedParticles = [];
+let lengthOfOriginalArray = 0;
 
-const arrayToParse = [[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,1,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],
+const happyfathersday = [[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,1,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],
 [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,1,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],
 [null,null,1,1,null,null,null,null,1,1,null,null,1,1,1,1,1,1,1,1,null,null,1,1,1,1,1,1,1,1,null,null,1,1,1,1,1,1,1,1,null,null,1,1,null,null,null,null,1,1,null,null,null,null,null,null,null,null,1,1,1,1,1,1,1,1,null,null,1,1,1,1,1,1,1,1,null,null,1,1,1,1,1,1,1,1,null,null,1,1,null,null,null,null,1,1,null,null,1,1,1,1,1,1,1,1,null,null,1,1,1,1,1,1,1,1,null,null,1,null,null,1,1,1,1,1,1,1,1,null,null,null,null,null,null,null,null,1,1,1,1,1,1,null,null,null,null,1,1,1,1,1,1,1,1,null,null,1,1,null,null,null,null,1,1,null,null,1,1,null,null,null,null,null,null,null,null,null,null,null],
 [null,null,1,1,null,null,null,null,1,1,null,null,1,1,1,1,1,1,1,1,null,null,1,1,1,1,1,1,1,1,null,null,1,1,1,1,1,1,1,1,null,null,1,1,null,null,null,null,1,1,null,null,null,null,null,null,null,null,1,1,1,1,1,1,1,1,null,null,1,1,1,1,1,1,1,1,null,null,1,1,1,1,1,1,1,1,null,null,1,1,null,null,null,null,1,1,null,null,1,1,1,1,1,1,1,1,null,null,1,1,1,1,1,1,1,1,null,null,1,null,null,1,1,1,1,1,1,1,1,null,null,null,null,null,null,null,null,1,1,1,1,1,1,1,null,null,null,1,1,1,1,1,1,1,1,null,null,1,1,null,null,null,null,1,1,null,null,1,1,null,null,null,null,null,null,null,null,null,null,null],
@@ -31,11 +32,36 @@ const arrayToParse = [[null,null,null,null,null,null,null,null,null,null,null,nu
 [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],
 [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]]
 
-const arrayDepth = 2;
+var iloveyou = [[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],
+[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],
+[null,null,1,1,1,1,1,1,1,1,null,null,null,null,null,null,null,null,1,1,null,null,null,null,null,null,null,null,1,1,1,1,1,1,1,1,null,null,1,1,null,null,null,null,1,1,null,null,1,1,1,1,1,1,1,1,null,null,null,null,null,null,null,null,1,1,null,null,null,null,1,1,null,null,1,1,1,1,1,1,1,1,null,null,1,1,null,null,null,null,1,1,null,null,1,1,null,null,null,null],
+[null,null,1,1,1,1,1,1,1,1,null,null,null,null,null,null,null,null,1,1,null,null,null,null,null,null,null,null,1,1,1,1,1,1,1,1,null,null,1,1,null,null,null,null,1,1,null,null,1,1,1,1,1,1,1,1,null,null,null,null,null,null,null,null,1,1,null,null,null,null,1,1,null,null,1,1,1,1,1,1,1,1,null,null,1,1,null,null,null,null,1,1,null,null,1,1,null,null,null,null],
+[null,null,null,null,null,1,1,null,null,null,null,null,null,null,null,null,null,null,1,1,null,null,null,null,null,null,null,null,1,1,null,null,null,null,1,1,null,null,1,1,null,null,null,null,1,1,null,null,1,1,null,null,null,null,null,null,null,null,null,null,null,null,null,null,1,1,null,null,null,null,1,1,null,null,1,1,null,null,null,null,1,1,null,null,1,1,null,null,null,null,1,1,null,null,1,1,null,null,null,null],
+[null,null,null,null,null,1,1,null,null,null,null,null,null,null,null,null,null,null,1,1,null,null,null,null,null,null,null,null,1,1,null,null,null,null,1,1,null,null,1,1,null,null,null,null,1,1,null,null,1,1,null,null,null,null,null,null,null,null,null,null,null,null,null,null,1,1,null,null,null,null,1,1,null,null,1,1,null,null,null,null,1,1,null,null,1,1,null,null,null,null,1,1,null,null,1,1,null,null,null,null],
+[null,null,null,null,null,1,1,null,null,null,null,null,null,null,null,null,null,null,1,1,null,null,null,null,null,null,null,null,1,1,null,null,null,null,1,1,null,null,1,1,null,null,null,null,1,1,null,null,1,1,null,null,null,null,null,null,null,null,null,null,null,null,null,null,1,1,null,null,null,null,1,1,null,null,1,1,null,null,null,null,1,1,null,null,1,1,null,null,null,null,1,1,null,null,1,1,null,null,null,null],
+[null,null,null,null,null,1,1,null,null,null,null,null,null,null,null,null,null,null,1,1,null,null,null,null,null,null,null,null,1,1,null,null,null,null,1,1,null,null,1,1,null,null,null,null,1,1,null,null,1,1,null,null,null,null,null,null,null,null,null,null,null,null,null,null,1,1,null,null,null,null,1,1,null,null,1,1,null,null,null,null,1,1,null,null,1,1,null,null,null,null,1,1,null,null,1,1,null,null,null,null],
+[null,null,null,null,null,1,1,null,null,null,null,null,null,null,null,null,null,null,1,1,null,null,null,null,null,null,null,null,1,1,null,null,null,null,1,1,null,null,1,1,null,null,null,null,1,1,null,null,1,1,null,null,null,null,null,null,null,null,null,null,null,null,null,null,1,1,null,null,null,null,1,1,null,null,1,1,null,null,null,null,1,1,null,null,1,1,null,null,null,null,1,1,null,null,1,1,null,null,null,null],
+[null,null,null,null,null,1,1,null,null,null,null,null,null,null,null,null,null,null,1,1,null,null,null,null,null,null,null,null,1,1,null,null,null,null,1,1,null,null,1,1,null,null,null,null,1,1,null,null,1,1,null,null,null,null,null,null,null,null,null,null,null,null,null,null,1,1,null,null,null,null,1,1,null,null,1,1,null,null,null,null,1,1,null,null,1,1,null,null,null,null,1,1,null,null,1,1,null,null,null,null],
+[null,null,null,null,null,1,1,null,null,null,null,null,null,null,null,null,null,null,1,1,null,null,null,null,null,null,null,null,1,1,null,null,null,null,1,1,null,null,1,1,null,null,null,null,1,1,null,null,1,1,null,null,null,null,null,null,null,null,null,null,null,null,null,null,1,1,null,null,null,null,1,1,null,null,1,1,null,null,null,null,1,1,null,null,1,1,null,null,null,null,1,1,null,null,1,1,null,null,null,null],
+[null,null,null,null,null,1,1,null,null,null,null,null,null,null,null,null,null,null,1,1,null,null,null,null,null,null,null,null,1,1,null,null,null,null,1,1,null,null,1,1,null,null,null,null,1,1,null,null,1,1,1,1,1,1,1,1,null,null,null,null,null,null,null,null,1,1,1,1,1,1,1,1,null,null,1,1,null,null,null,null,1,1,null,null,1,1,null,null,null,null,1,1,null,null,1,1,null,null,null,null],
+[null,null,null,null,null,1,1,null,null,null,null,null,null,null,null,null,null,null,1,1,null,null,null,null,null,null,null,null,1,1,null,null,null,null,1,1,null,null,1,1,null,null,null,null,1,1,null,null,1,1,1,1,1,1,1,1,null,null,null,null,null,null,null,null,1,1,1,1,1,1,1,1,null,null,1,1,null,null,null,null,1,1,null,null,1,1,null,null,null,null,1,1,null,null,1,1,null,null,null,null],
+[null,null,null,null,null,1,1,null,null,null,null,null,null,null,null,null,null,null,1,1,null,null,null,null,null,null,null,null,1,1,null,null,null,null,1,1,null,null,null,1,1,null,null,1,1,null,null,null,1,1,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,1,1,null,null,null,null,null,1,1,null,null,null,null,1,1,null,null,1,1,null,null,null,null,1,1,null,null,1,1,null,null,null,null],
+[null,null,null,null,null,1,1,null,null,null,null,null,null,null,null,null,null,null,1,1,null,null,null,null,null,null,null,null,1,1,null,null,null,null,1,1,null,null,null,1,1,null,null,1,1,null,null,null,1,1,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,1,1,null,null,null,null,null,1,1,null,null,null,null,1,1,null,null,1,1,null,null,null,null,1,1,null,null,1,1,null,null,null,null],
+[null,null,null,null,null,1,1,null,null,null,null,null,null,null,null,null,null,null,1,1,null,null,null,null,null,null,null,null,1,1,null,null,null,null,1,1,null,null,null,1,1,null,null,1,1,null,null,null,1,1,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,1,1,null,null,null,null,null,1,1,null,null,null,null,1,1,null,null,1,1,null,null,null,null,1,1,null,null,1,1,null,null,null,null],
+[null,null,null,null,null,1,1,null,null,null,null,null,null,null,null,null,null,null,1,1,null,null,null,null,null,null,null,null,1,1,null,null,null,null,1,1,null,null,null,1,1,null,null,1,1,null,null,null,1,1,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,1,1,null,null,null,null,null,1,1,null,null,null,null,1,1,null,null,1,1,null,null,null,null,1,1,null,null,1,1,null,null,null,null],
+[null,null,null,null,null,1,1,null,null,null,null,null,null,null,null,null,null,null,1,1,null,null,null,null,null,null,null,null,1,1,null,null,null,null,1,1,null,null,null,null,1,null,null,1,null,null,null,null,1,1,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,1,1,null,null,null,null,null,1,1,null,null,null,null,1,1,null,null,1,1,null,null,null,null,1,1,null,null,1,1,null,null,null,null],
+[null,null,null,null,null,1,1,null,null,null,null,null,null,null,null,null,null,null,1,1,null,null,null,null,null,null,null,null,1,1,null,null,null,null,1,1,null,null,null,null,1,1,1,1,null,null,null,null,1,1,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,1,1,null,null,null,null,null,1,1,null,null,null,null,1,1,null,null,1,1,null,null,null,null,1,1,null,null,null,null,null,null,null,null],
+[null,null,null,null,null,1,1,null,null,null,null,null,null,null,null,null,null,null,1,1,null,null,null,null,null,null,null,null,1,1,null,null,null,null,1,1,null,null,null,null,1,1,1,1,null,null,null,null,1,1,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,1,1,null,null,null,null,null,1,1,null,null,null,null,1,1,null,null,1,1,null,null,null,null,1,1,null,null,null,null,null,null,null,null],
+[null,null,1,1,1,1,1,1,1,1,null,null,null,null,null,null,null,null,1,1,1,1,1,1,1,1,null,null,1,1,1,1,1,1,1,1,null,null,null,null,null,1,1,null,null,null,null,null,1,1,1,1,1,1,1,1,null,null,null,null,null,null,null,null,null,null,null,1,1,null,null,null,null,null,1,1,1,1,1,1,1,1,null,null,1,1,1,1,1,1,1,1,null,null,1,1,null,null,null,null],
+[null,null,1,1,1,1,1,1,1,1,null,null,null,null,null,null,null,null,1,1,1,1,1,1,1,1,null,null,1,1,1,1,1,1,1,1,null,null,null,null,null,1,1,null,null,null,null,null,1,1,1,1,1,1,1,1,null,null,null,null,null,null,null,null,null,null,null,1,1,null,null,null,null,null,1,1,1,1,1,1,1,1,null,null,1,1,1,1,1,1,1,1,null,null,1,1,null,null,null,null],
+[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],
+[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]]
+
+let arrayDepth = 1;
 const coordArr = [];
-for (let i = 0; i < arrayToParse.length; i++) {
-    for (let j = 0; j < arrayToParse[i].length; j++) {
-        if (arrayToParse[i][j] === 1) {
+for (let i = 0; i < happyfathersday.length; i++) {
+    for (let j = 0; j < happyfathersday[i].length; j++) {
+        if (happyfathersday[i][j] === 1) {
             for (let row = 0; row < arrayDepth; row++) {
                 for (let col = 0; col < arrayDepth; col++) {
                     coordArr.push({x: (j*arrayDepth) + row, y: (i*arrayDepth) + col})
@@ -45,17 +71,19 @@ for (let i = 0; i < arrayToParse.length; i++) {
     }
 }
 console.log(coordArr)
+lengthOfOriginalArray = coordArr.length;
 
 const defaultHeight = 633;
 const defaultWidth = 1366;
 
-// frame is 171 (width) x 24 (height).
+// frame for HAPPY FATHER'S DAY! is 171 (width) x 24 (height).
 
-const textFrameWidth = window.innerWidth * 0.8
-const textFrameHeight = textFrameWidth * (24/171)
-const textFrameLocX = (window.innerWidth / 2) - (textFrameWidth / 2)
-const textFrameLocY = window.innerHeight * 0.7
-const textFramePixelSize = textFrameWidth / 171 / arrayDepth
+let happyFathersDayFinishedRendering = false;
+let textFrameWidth = window.innerWidth * 0.8
+let textFrameHeight = textFrameWidth * (24/171)
+let textFrameLocX = (window.innerWidth / 2) - (textFrameWidth / 2)
+let textFrameLocY = window.innerHeight * 0.7
+let textFramePixelSize = textFrameWidth / 171 / arrayDepth
 const vertScale = window.innerHeight / defaultHeight
 const horizScale = window.innerWidth / defaultWidth
 canvas.width = window.innerWidth;
@@ -73,6 +101,9 @@ function explode(x, y){
         let targetCoordY = null
         if (Math.random() < 0.5 || coordArr.length == 0) {
             // let one half of the particles not get sucked into the text.
+            if (coordArr.length == 0 && !happyFathersDayFinishedRendering) {
+                happyFathersDayFinishedRendering = true;
+            }
             particleLife = 500
         } else {
             particleLife = 100
@@ -227,11 +258,11 @@ function drawInitParticle(){
         c.closePath()
     }
 }
-
+let breakFramesBetweenText = 0;
 function frame(){
-    
+
     c.clearRect(0, 0, canvas.width, canvas.height);
-    if(Math.floor(Math.random()*100) == 1){
+    if(Math.floor(Math.random()*80) == 1){
         initParticle();
     }
 
@@ -244,6 +275,10 @@ function frame(){
     c.strokeWidth = 5;
     c.strokeStyle = 'white'
     c.stroke()
+    c.font = 20*horizScale  + "px inconsolata";
+    c.textAlign = "left";
+    c.beginPath()
+    c.fillText("Rendered " + (lengthOfOriginalArray - coordArr.length) + "/" + lengthOfOriginalArray + " (" + (((lengthOfOriginalArray - coordArr.length)/lengthOfOriginalArray)*100).toFixed(2) + "%)", 10, 15);
     c.closePath()
 
     drawInitParticle()
@@ -251,6 +286,37 @@ function frame(){
     
     drawDeathParticles()
     updateDeathParticles()
+
+    if (happyFathersDayFinishedRendering) {
+        breakFramesBetweenText++;
+    }
+
+    if (breakFramesBetweenText > 1300 && happyFathersDayFinishedRendering) {
+        happyFathersDayFinishedRendering = false;
+        console.log("rendering I LOVE YOU")
+        deathParticles = [];
+        arrayDepth = 2
+        // frame for I LOVE YOU! is 98 (width) x 24 (height).
+        textFrameWidth = window.innerWidth * 0.5
+        textFrameHeight = textFrameWidth * (24/98)
+        textFrameLocX = (window.innerWidth / 2) - (textFrameWidth / 2)
+        textFrameLocY = window.innerHeight * 0.7
+        textFramePixelSize = textFrameWidth / 97 / arrayDepth
+        
+        for (let i = 0; i < iloveyou.length; i++) {
+            for (let j = 0; j < iloveyou[i].length; j++) {
+                if (iloveyou[i][j] === 1) {
+                    for (let row = 0; row < arrayDepth; row++) {
+                        for (let col = 0; col < arrayDepth; col++) {
+                            coordArr.push({x: (j*arrayDepth) + row, y: (i*arrayDepth) + col})
+                        }
+                    }
+                }
+            }
+        }
+
+        lengthOfOriginalArray = coordArr.length;
+    }
 }
 
 var wrapper = frame();
